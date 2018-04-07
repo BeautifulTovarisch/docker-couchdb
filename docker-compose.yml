@@ -8,5 +8,12 @@ services:
     volumes:
       - node_modules:/app/node_modules:ro
       - .:/app
+  database:
+    image: couchdb:2.1.1
+    ports:
+      - "${DATABASE_PORT}:${DATABASE_PORT}"
+    volumes:
+      - database:/app/data
 volumes:
+  database:
   node_modules:
