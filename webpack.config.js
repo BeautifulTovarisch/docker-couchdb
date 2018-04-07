@@ -4,7 +4,7 @@ const webpack = require( 'webpack' );
 module.exports = {
     entry: [
         'babel-polyfill',
-        path.resolve( __dirname, 'Client/scripts/index.jsx' )
+        path.resolve( __dirname, 'client/scripts/index.jsx' )
     ],
     output: {
         path: path.resolve( __dirname, './' ),

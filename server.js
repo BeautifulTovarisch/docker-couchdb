@@ -21,7 +21,7 @@ app.use( express.static( __dirname ) );
 
 /////////////// Routes ///////////////
 
-const index = require( path.resolve( 'Server/index/router' ) );
+const index = require( path.resolve( 'server/index/router' ) );
 
 app.use( '/', index );
 
