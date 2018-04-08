@@ -1,8 +1,10 @@
-version: "3"
+version: "3.4"
 services:
   web:
     env_file: .env
-    build: .
+    build:
+      context: .
+      target: build
     ports:
       - "${WEBPACK_PORT}:${WEBPACK_PORT}"
     networks:
