@@ -1,3 +1,10 @@
+# Environment Variables for docker-compose
+
 .env
 .env.*
 .env_file
+
+# Environment secrets for docker stack deploy
+*.secret
+secrets/
+.secrets/
