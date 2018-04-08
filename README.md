@@ -18,12 +18,16 @@ This process usually takes a few minutes.
 
 ### Environment Variables ###
 
-You'll need to create what's called an env_file to store environment variables ( this is essentially a secrets.json ). There are three variables that need to be defined as such: 
+You'll need to create what's called an env_file to store environment variables ( this is essentially a secrets.json ).
 
 ```
 	PORT=<some port>
 	HOST=<some host>
 	WEBPACK_PORT=<some port>
+	
+	DATABASE_PORT=<some port>
+	COUCHDB_USER=<admin user>
+	COUCHDB_PASSWORD=<admin password>
 ```
 
 Make sure the server and webpack dev server are running on different ports!
@@ -48,6 +52,18 @@ For more information on the details of the above set up, refer to the [Part 3 of
 ### Visit the App ###
 
 The app should now be running at <http://localhost:3000> or whatever port you set as WEBPACK_PORT above.
+
+### Deploy the Project ( work in progress ) ###
+
+Deploying the stack can be done via `docker stack deploy -c docker-stack.yml <name of application>`. First you'll need to configure some secrets:
+
+1. Make a directory called .secrets, this will store sensitive environment variables in place of the .env file.
+2. Create a file called db-admin-password.txt
+3. Place the database password in this file and save
+
+If you open docker-stack.yml, you should see a `secrets:` section at the bottom. Verify that db_admin_password.file = db-admin-password.txt. More information can be found in the [Docker Secrets](https://docs.docker.com/engine/swarm/secrets/) documentation.
+
+After your secrets are properly configured, you can run `docker stack deploy -c docker-stack.yml <app name>` to deploy your swarm.
 
 ### Recommended ###
 
