@@ -1,6 +1,6 @@
 # Build Process
 
-FROM node:8.9.0 as build
+FROM node:8.11.1 as build
 WORKDIR /app
 COPY package.json .
 RUN npm install
@@ -9,7 +9,13 @@ CMD [ "npm", "start" ]
 
 # Production Image
 
-FROM node:alpine
-COPY --from=build . /app
+FROM node:8.11.1-alpine
+
+WORKDIR /app
+
+COPY --from=build /app /app
+
+RUN npm run production-build
+
 USER node
-CMD [ "node", "/app/server.js" ]
+CMD [ "node", "server.js" ]
